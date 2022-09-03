@@ -63,7 +63,7 @@ func (s *Server) initConfig() {
 	if err != nil {
 		log.Fatal("read config failed: ", err)
 	}
-	viper.Unmarshal(s.config)
+	viper.Unmarshal(&s.config)
 	fmt.Println("-------------------------")
 	fmt.Println(s.config)
 	fmt.Println("-------------------------")
