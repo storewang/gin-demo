@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"github.com/storewang/gin-demo/web/config"
-	"github.com/storewang/gin-demo/web/controller"
 )
 
 type Server struct {
@@ -19,7 +18,7 @@ func NewServer() *Server {
 	server := &Server{}
 	server.initConfig()
 	server.init()
-	server.initRoute()
+	InitRouter(server.server)
 
 	return server
 }
@@ -67,23 +66,4 @@ func (s *Server) initConfig() {
 	fmt.Println("-------------------------")
 	fmt.Println(s.config)
 	fmt.Println("-------------------------")
-}
-func (s *Server) initRoute() {
-	controllers := controller.GetControllers()
-
-	for _, c := range controllers {
-		mthd := c.Method
-		if mthd == "GET" {
-			s.server.GET(c.Path, c.Handler)
-		} else if mthd == "POST" {
-			s.server.POST(c.Path, c.Handler)
-		} else if mthd == "DELETE" {
-			s.server.DELETE(c.Path, c.Handler)
-		} else if mthd == "PUT" {
-			s.server.PUT(c.Path, c.Handler)
-		} else if mthd == "" {
-		} else {
-			fmt.Println("不支持的请求方法:", mthd)
-		}
-	}
 }
