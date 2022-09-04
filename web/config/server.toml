@@ -1,0 +1,9 @@
+app_name = "gin demo"
+[server]
+host = ""
+port = "8888"
+[database]
+host = "10.254.148.149:3306"
+user = "root"
+passwd = "5OKc8OVZFRAbfJ"
+schema = "biz_data"

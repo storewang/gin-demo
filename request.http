@@ -1,0 +1,44 @@
+### 测试/
+GET http://localhost:8888/
+Accept: application/json
+
+
+### 测试GET
+GET http://localhost:8888/path/123?user=aaa&pwd=abc123
+Accept: application/json
+
+
+### 测试Post
+POST http://localhost:8888/path
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+user=aaa&pwd=abc123
+
+### 测试Put
+PUT http://localhost:8888/path
+Accept: application/json
+
+user=aaa&pwd=abc123
+
+### 测试Post Json
+POST http://localhost:8888/pathBind
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name":"张三",
+    "age":8,
+    "sex":true
+}
+
+
+### 测试Post bind
+POST http://localhost:8888/pathBindf?name=张三&age=25&sex=true
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json
+
+
+### 测试查询用户
+GET http://localhost:8888/u/1
+Accept: application/json
