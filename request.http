@@ -40,5 +40,16 @@ Accept: application/json
 
 
 ### 测试查询用户
-GET http://localhost:8888/u/1
+GET http://localhost:8888/u/45
 Accept: application/json
+
+### 测试添加用户
+POST http://localhost:8888/u/
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name":"大小罗",
+    "age":18,
+    "sex":1
+}

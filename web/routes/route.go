@@ -20,4 +20,5 @@ func InitRoute(dbutil utils.DbUtil, server *gin.Engine) {
 	userHandler := handlers.NewUserHandler(dbutil.Db)
 	rg := server.Group("/u")
 	rg.GET("/:id", userHandler.FindById)
+	rg.POST("/", userHandler.AddUser)
 }
