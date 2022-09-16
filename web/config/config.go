@@ -4,6 +4,7 @@ type Config struct {
 	AppName  string
 	Server   GinConf
 	Database DbConf
+	K8sConf  K8sConf
 }
 type GinConf struct {
 	Host string
@@ -14,4 +15,8 @@ type DbConf struct {
 	User   string
 	Passwd string
 	Schema string
+}
+type K8sConf struct {
+	BearerToken string
+	Host        string
 }

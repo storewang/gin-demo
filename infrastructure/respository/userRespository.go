@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/shitou/go-demo-gin/infrastructure/po"
+	rp "github.com/shitou/go-demo-gin/modles/repository"
 	"gorm.io/gorm"
 )
 
@@ -14,6 +15,8 @@ type UserRepository struct {
 func NewUserRepository(db *gorm.DB) *UserRepository {
 	return &UserRepository{db: db}
 }
+
+var _ rp.IUserRepository = (*UserRepository)(nil)
 
 func (r *UserRepository) FindUserById(id uint) (u *po.User) {
 	user := po.User{}

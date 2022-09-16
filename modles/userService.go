@@ -6,20 +6,21 @@ import (
 
 	"github.com/shitou/go-demo-gin/applications/dto"
 	"github.com/shitou/go-demo-gin/infrastructure/po"
-	"github.com/shitou/go-demo-gin/infrastructure/respository"
+	rp "github.com/shitou/go-demo-gin/modles/repository"
 )
 
 type UserService struct {
-	userDao *respository.UserRepository
+	userDao rp.IUserRepository
 }
 
-func NewUserHandler(userDao *respository.UserRepository) (svc *UserService) {
+func NewUserHandler(userDao rp.IUserRepository) (svc *UserService) {
 	svc = &UserService{userDao: userDao}
 	return
 }
 
 func (userSvc *UserService) AddUser(user *dto.UserDTO) int {
 	userPO := po.User{Name: user.Name, Age: user.Age, Sex: user.Sex}
+
 	userId, err := userSvc.userDao.SaveUser(&userPO)
 	if err != nil {
 		fmt.Println("添加用户信息失败：", user)

@@ -12,9 +12,10 @@ import (
 )
 
 type Server struct {
-	server *gin.Engine
-	conf   config.Config
-	dbutil utils.DbUtil
+	server  *gin.Engine
+	conf    config.Config
+	dbutil  utils.DbUtil
+	k8suril *utils.K8sUtil
 }
 
 func (s *Server) initConfig() {
@@ -59,10 +60,13 @@ func (s *Server) init() *Server {
 	// 初始数据库
 	s.dbutil = utils.DbUtil{}
 	s.dbutil.Init(&s.conf.Database)
+	// 初始化k8sUtil
+	s.k8suril = utils.NewK8sUtil(&s.conf)
+
 	// 初始化gin
 	s.server = gin.Default()
 	// 初始化route
-	routes.InitRoute(s.dbutil, s.server)
+	routes.InitRoute(s.dbutil, s.k8suril, s.server)
 
 	return s
 }
