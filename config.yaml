@@ -7,6 +7,6 @@ redis:
 
 # 微信公众号相关配置
 officialAccountConfig:
-  appID: wxe3025b67aef0697e
-  appSecret: 4576f3896c667c83abc3386ad44836ed
+  appID: xxxx
+  appSecret: xxxx
   token: chart
