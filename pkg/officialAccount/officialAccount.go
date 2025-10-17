@@ -44,13 +44,13 @@ func (ex *ExampleOfficialAccount) Serve(c *gin.Context) {
 	//处理消息接收以及回复
 	err := server.Serve()
 	if err != nil {
-		log.Error("Serve Error, err=%+v", err)
+		log.Errorf("Serve Error, err=%v", err)
 		return
 	}
 	//发送回复的消息
 	err = server.Send()
 	if err != nil {
-		log.Error("Send Error, err=%+v", err)
+		log.Errorf("Send Error, err=%+v", err)
 		return
 	}
 }
