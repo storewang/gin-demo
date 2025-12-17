@@ -24,6 +24,9 @@ type Config struct {
 		IdleTimeout int    `yaml:"idleTimeout"`
 	} `yaml:"redis"`
 	*OfficialAccountConfig `yaml:"officialAccountConfig"`
+	Gemini                 struct {
+		APIKey string `yaml:"apiKey"`
+	} `yaml:"gemini"`
 }
 
 // OfficialAccountConfig 公众号相关配置

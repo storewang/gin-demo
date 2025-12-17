@@ -3,9 +3,8 @@ package server
 import (
 	"context"
 	"flag"
-	"wecahtdemo/conf"
-
-	exampleOffAcount "wecahtdemo/pkg/officialAccount"
+	"wechatdemo/conf"
+	exampleOffAccount "wechatdemo/pkg/officialAccount"
 
 	"github.com/gin-gonic/gin"
 	"github.com/silenceper/wechat/v2"
@@ -28,7 +27,7 @@ func Run() error {
 	wc := InitWechat()
 
 	//公众号例子相关操作
-	exampleOffAccount := exampleOffAcount.NewExampleOfficialAccount(wc)
+	exampleOffAccount := exampleOffAccount.NewExampleOfficialAccount(wc)
 	//处理推送消息以及事件
 	r.Any("/api/v1/serve", exampleOffAccount.Serve)
 	//获取ak

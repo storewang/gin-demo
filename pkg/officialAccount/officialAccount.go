@@ -1,7 +1,7 @@
 package officialaccount
 
 import (
-	"wecahtdemo/conf"
+	"wechatdemo/conf"
 
 	"github.com/gin-gonic/gin"
 	"github.com/silenceper/wechat/v2"

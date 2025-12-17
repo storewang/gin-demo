@@ -10,3 +10,7 @@ officialAccountConfig:
   appID: xxxxx
   appSecret: xx-xxxx
   token: chart
+
+# Gemini AI配置
+gemini:
+  apiKey: your-gemini-api-key-here

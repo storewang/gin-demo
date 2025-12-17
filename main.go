@@ -1,7 +1,7 @@
 package main
 
 import (
-	"wecahtdemo/pkg/server"
+	"wechatdemo/pkg/server"
 )
 
 func main() {
