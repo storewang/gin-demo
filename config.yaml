@@ -1,5 +1,5 @@
 # 监听本地的端口
-listen: :6666
+listen: :8080
 
 # 使用redis来存放access_token
 redis:

@@ -7,7 +7,7 @@ services:
     container_name: go-wechat
     restart: always
     ports:
-      - 8080:8080
+      - 6666:8080
     volumes:
       - /home/ubuntu/soft/gin-demo/config.yaml:/app/config.yaml
     environment:
