@@ -1,5 +1,5 @@
 # 监听本地的端口
-listen: :8080
+listen: :6666
 
 # 使用redis来存放access_token
 redis:
@@ -7,10 +7,11 @@ redis:
 
 # 微信公众号相关配置
 officialAccountConfig:
-  appID: xxxxx
-  appSecret: xx-xxxx
+  appID: wxe3025b67aef0697e
+  appSecret: 4576f3896c667c83abc3386ad44836ed
   token: chart
 
 # Gemini AI配置
 gemini:
-  apiKey: your-gemini-api-key-here
+  apiKey: AIzaSyALQQ3ITJnvTifmuZQauApE_PbGTKep_yg
+  moduleName: gemini-2.5-flash

@@ -9,7 +9,7 @@ import (
 	"google.golang.org/genai"
 )
 
-type GeminiClient *GeminiApi
+var GeminiClient *GeminiApi
 
 type GeminiApi struct {
 	client *genai.Client
@@ -19,6 +19,7 @@ type GeminiApi struct {
 func NewClient() (*GeminiApi, error) {
 	cfg := conf.GetConfig()
 	ctx := context.Background()
+	log.Printf("Using Gemini APIKey: %s", cfg.Gemini.APIKey)
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  cfg.Gemini.APIKey,
 		Backend: genai.BackendGeminiAPI,
@@ -41,10 +42,12 @@ func (api *GeminiApi) Text(text string) string {
 		TopK:             &topK,
 		ResponseMIMEType: "application/json",
 	}
-
+	cfg := conf.GetConfig()
+	log.Printf("Using Gemini Module: %s", cfg.Gemini.ModuleName)
+	log.Printf("Using Gemini client: %s", api.client)
 	result, err := api.client.Models.GenerateContent(
 		api.ctx,
-		conf.C.ModuleName,
+		cfg.Gemini.ModuleName,
 		genai.Text(text),
 		config,
 	)
@@ -64,9 +67,10 @@ func (api *GeminiApi) ChartWithText(text string, imageBytes []byte) string {
 	contents := []*genai.Content{
 		genai.NewContentFromParts(parts, genai.RoleUser),
 	}
+	cfg := conf.GetConfig()
 	result, err := api.client.Models.GenerateContent(
 		api.ctx,
-		conf.C.ModuleName,
+		cfg.Gemini.ModuleName,
 		contents,
 		config,
 	)

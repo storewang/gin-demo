@@ -25,7 +25,8 @@ type Config struct {
 	} `yaml:"redis"`
 	*OfficialAccountConfig `yaml:"officialAccountConfig"`
 	Gemini                 struct {
-		APIKey string `yaml:"apiKey"`
+		APIKey     string `yaml:"apiKey"`
+		ModuleName string `yaml:"moduleName"`
 	} `yaml:"gemini"`
 }
 

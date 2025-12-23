@@ -1,10 +1,12 @@
 package officialaccount
 
 import (
+	"context"
 	"wechatdemo/conf"
 
 	"github.com/silenceper/wechat/v2/officialaccount/message"
 	log "github.com/sirupsen/logrus"
+	"google.golang.org/genai"
 )
 
 //article1 := message.NewArticle("测试图文1", "图文描述", "", "")
@@ -49,12 +51,40 @@ func txtMessageHandler(msg *message.MixMessage) *message.Reply {
 
 // generateGeminiReply 使用Gemini AI生成回复
 func generateGeminiReply(userMessage string) (string, error) {
+	//cfg := conf.GetConfig()
+	//if cfg.Gemini.APIKey == "" {
+	//	return "Gemini API密钥未配置", nil
+	//}
+	//result := GeminiClient.Text(userMessage)
+	//return result, nil
+
 	cfg := conf.GetConfig()
-	if cfg.Gemini.APIKey == "" {
-		return "Gemini API密钥未配置", nil
+	ctx := context.Background()
+	log.Printf("Using Gemini APIKey: %s", cfg.Gemini.APIKey)
+	client, err := genai.NewClient(ctx, &genai.ClientConfig{
+		APIKey:  cfg.Gemini.APIKey,
+		Backend: genai.BackendGeminiAPI,
+	})
+	if err != nil {
+		return userMessage, err
 	}
-	result := GeminiClient.Text(userMessage)
-	return result, nil
+	//defer client.destroy()
+
+	log.Printf("Using Gemini Module: %s", cfg.Gemini.ModuleName)
+	model := client.Models
+	result, err := model.GenerateContent(
+		ctx,
+		cfg.Gemini.ModuleName,
+		genai.Text("请作为微信公众号助手回复用户消息："+userMessage),
+		&genai.GenerateContentConfig{
+			ResponseMIMEType: "application/json",
+		},
+	)
+	if err != nil {
+		return "", err
+	}
+
+	return result.Text(), nil
 }
 
 // 	ctx := context.Background()
